@@ -23,7 +23,7 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 }
 
-group = 'com.npcdialoguereplacement'
+group = 'com.homeimprovement'
 version = '1.0.0'
 
 tasks.withType(JavaCompile) {
