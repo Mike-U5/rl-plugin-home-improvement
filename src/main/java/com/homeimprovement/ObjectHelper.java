@@ -4,12 +4,10 @@ import net.runelite.api.Client;
 import net.runelite.api.GameObject;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.Point;
-import net.runelite.api.Scene;
 import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
 
 public class ObjectHelper {
-	public static TileObject getHoveredObject(final Client client) {
+	public static GameObject getHoveredObject(final Client client) {
 		final MenuEntry[] menuEntries = client.getMenuEntries();
 		if (menuEntries.length == 0) {
 			return null;
@@ -26,7 +24,7 @@ public class ObjectHelper {
 			case GAME_OBJECT_FIFTH_OPTION:
 			case EXAMINE_OBJECT:
 			{
-				return findTileObject(client, entry.getParam0(), entry.getParam1(), entry.getIdentifier());
+				return findTileGameObject(client, entry.getParam0(), entry.getParam1(), entry.getIdentifier());
 			}
 		}
 
@@ -45,7 +43,6 @@ public class ObjectHelper {
 		}
 
 		final int idx = menuEntries.length - 1 - (dy / 15);
-
 		if (mousePosition.getX() > menuX && mousePosition.getX() < menuX + menuWidth && idx >= 0 && idx < menuEntries.length) {
 			return menuEntries[idx];
 		}
@@ -53,13 +50,12 @@ public class ObjectHelper {
 		return menuEntries[menuEntries.length - 1];
 	}
 
-	private static TileObject findTileObject(final Client client, final int x, final int y, final int id) {
-		final Scene scene = client.getScene();
-		final Tile[][][] tiles = scene.getTiles();
+	private static GameObject findTileGameObject(final Client client, final int x, final int y, final int id) {
+		final Tile[][][] tiles = client.getScene().getTiles();
 		final Tile tile = tiles[client.getPlane()][x][y];
 
 		if (tile != null) {
-			for (GameObject gameObject : tile.getGameObjects()) {
+			for (final GameObject gameObject : tile.getGameObjects()) {
 				if (gameObject != null && gameObject.getId() == id) {
 					return gameObject;
 				}
@@ -69,7 +65,7 @@ public class ObjectHelper {
 		return null;
 	}
 
-	// Objects and worn equipment always have an ID of -1 and an X/Y value
+	// Object entries always have an item ID of -1 and non-negative param values representing its x/y position
 	public static boolean isObjEntry(final MenuEntry entry) {
 		return entry.getItemId() == -1 && entry.getParam0() >= 0 && entry.getParam1() >= 0;
 	}
