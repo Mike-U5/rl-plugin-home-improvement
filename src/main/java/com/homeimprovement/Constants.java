@@ -7,7 +7,6 @@ import java.util.Map;
 public class Constants {
 	public static final int BUILD_MODE_VARBIT = 2176;
 	public static final List<String> POH_OPTIONS = List.of("Remove" , "Upgrade" , "Revert" , "Remove-room" , "Remove-decorations" , "Build-in", "Build");
-	public static final List<Integer> POH_DUNGEON_DOOR_HOTSPOT = List.of(15317, 37475);
 	public static final int POH_PORTAL_ID = 4525;
 	public static final int WINTUMBER_TREE_ID = 19038;
 	// This array has all Mahogany Homes objects and the morph ID they have when they are in need of replacement
@@ -24,6 +23,7 @@ public class Constants {
 		put(40008, 40031);
 		put(40009, 40017);
 		put(40291, 40050);
+		put(40292, 40115);
 		// South of Hosidius
 		put(40012, 40017);
 		put(40013, 40043);

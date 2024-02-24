@@ -40,8 +40,6 @@ public class HomeImprovementPlugin extends Plugin {
 
 	@Subscribe
 	public void onMenuEntryAdded(final MenuEntryAdded e) {
-		System.out.println(e.getOption());
-
 		if (this.client.isInInstancedRegion()) {
 			// PoH
 			if (client.getVarbitValue(Constants.BUILD_MODE_VARBIT) == 0 && HomeImprovementPlugin.inPoh) {
